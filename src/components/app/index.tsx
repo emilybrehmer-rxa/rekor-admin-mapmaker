@@ -4,7 +4,6 @@ import { LoadScreen } from 'components/loadScreen';
 import React, { useState, useEffect, useRef } from 'react';
 
 import domo from 'ryuu.js';
-import Query from '@domoinc/query';
 
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -91,102 +90,8 @@ const App = () => {
     ],
   };
 
-  /* BEGIN REMOVE: Will go away once layer loop working */
-  const [layer1, setLayer1] = useState<any[]>([]);
-
-  const layer1Dataset = 'incidents';
-  // const layer1Dataset = mapConfig['layers'][0]['datasetID'];
-  const layer1LocationCol = [mapConfig['layers'][0]['locationCol']];
-  const layer1FilterCols = mapConfig['layers'][0]['filterCols'];
-  const layer1TooltipCols = mapConfig['layers'][0]['tooltips'][0][
-    'sections'
-  ].map((item: any) => item['sectionCol']);
-  const layer1Cols = layer1LocationCol.concat(
-    layer1FilterCols,
-    layer1TooltipCols,
-  );
-
-  /* Query: retrieve layer 1 data */
-  const getLayer1Data = () => {
-    let layer1Results: any = {};
-
-    const query = new Query().select(layer1Cols.join());
-    const queryUrl = query.query(layer1Dataset);
-    layer1Results = domo.get(queryUrl);
-    return layer1Results;
-  };
-
-  if (Object.keys(layer1).length !== 0) {
-    console.log(layer1);
-  }
-  /* END REMOVE: */
-
-  const [layers, setLayers] = useState<any[]>([]);
-
-  /* define function for retrieving layer data */
-  const getLayerData = (layerDatasetName, layerCols) => {
-    let layerResults: any = {};
-    const query = new Query().select(layerCols.join());
-    const queryUrl = query.query(layerDatasetName);
-    layerResults = domo.get(queryUrl);
-    return layerResults;
-  };
-
-  useEffect(() => {
-    /* if (errors === '') {
-      setLoading(false);
-    } */
-
-    /*
-    getUserInfo()
-      .then((data: any) => {
-        setUserEmail(data.detail.email);
-      })
-      .catch((error) => setErrors('Unable to retrieve Domo user information!'));
-    */
-
-    if ( 1 == 1 /*userRole === 'Admin'*/) {
-      setCurScreen('admin');
-    } else {
-      setCurScreen('home');
-    }
-
-    // loop through layers in mapConfig and save to layers[]
-    const layerData = [];
-    mapConfig.layers.forEach((l, i) => {
-      const locationCol = [l.locationCol];
-      const filterCols = l.filterCols;
-      const tooltipCols = l.tooltips[0]['sections'].map(
-        (item: any) => item['sectionCol'],
-      );
-      const layerColsConcat = locationCol.concat(filterCols, tooltipCols);
-      getLayerData(l.datasetName, layerColsConcat)
-        .then((data: any) => {
-          layerData[l.name] = {
-            layerDatasetId: l.datasetId,
-            layerDatasetName: l.datasetName,
-            layerCols: layerColsConcat,
-            layerData: data,
-          };
-        })
-        .catch((error: any) => setErrors('Unable to retrieve layer1!'));
-    });
-    setLayers(layerData);
-    setLoading(false);
-
-    getLayer1Data()
-      .then((data: any) => {
-        /* save to locations state */
-        setLayer1(data);
-        setLoading(false);
-      })
-      .catch((error: any) => setErrors('Unable to retrieve layer1!'));
-  }, [errors]);
-
+  
   /* DEV: Validation */
-  if (Object.keys(layers).length !== 0) {
-    console.log(layers);
-  }
 
   return (
     <Box sx={{ bgcolor: '#f8f8f8' }} ref={ref}>
@@ -197,29 +102,25 @@ const App = () => {
             if (errors !== '') {
               return <Typography>{errors}</Typography>;
             }
-            if (loading === false && Object.keys(layers).length !== 0) {
-              if (curScreen === 'admin') {
-                return (
-                  <div>
-                    <AdminScreen
-                      loading={loading}
-                      setLoading={setLoading}
-                      curScreen={curScreen}
-                      setCurScreen={setCurScreen}
-                      mapConfig={mapConfig}
-                    />
-                  </div>
-                );
-              }
-            }
-            return (
+              return (
+                <div>
+                  <AdminScreen
+                    loading={loading}
+                    setLoading={setLoading}
+                    curScreen={curScreen}
+                    setCurScreen={setCurScreen}
+                    mapConfig={mapConfig}
+                  />
+                </div>
+              );            
+            /* return (
               <LoadScreen
                 loading={loading}
                 setLoading={setLoading}
                 curScreen={curScreen}
                 setCurScreen={setCurScreen}
               />
-            );
+            ); */
           })()}
         </Box>
       </Container>

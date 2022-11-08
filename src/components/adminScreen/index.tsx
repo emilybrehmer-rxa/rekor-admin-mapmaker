@@ -45,7 +45,7 @@ export const AdminScreen = (props: any) => {
           background: '#666',
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
-        open={loading}
+        open={false}
       >
         <CircularProgress color="inherit" />
       </Backdrop>
