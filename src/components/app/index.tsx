@@ -1,17 +1,17 @@
+import { AdminScreen } from 'components/adminScreen';
+import { LoadScreen } from 'components/loadScreen';
+
 import React, { useState, useEffect, useRef } from 'react';
 
 import domo from 'ryuu.js';
 import Query from '@domoinc/query';
-
-import { AdminScreen } from 'src/components/adminScreen';
-import { LoadScreen } from 'src/components/loadScreen';
 
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import styles from './index.module.scss';
+import './index.module.scss';
 import wkx from 'wkx';
 
 const App = () => {

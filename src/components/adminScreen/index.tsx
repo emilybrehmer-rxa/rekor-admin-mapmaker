@@ -14,7 +14,7 @@ import mapboxgl from 'mapbox-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'mapbox-gl/dist/mapbox-gl.js';
-import styles from './index.module.scss';
+import './index.module.scss';
 import wkx from 'wkx';
 
 mapboxgl.accessToken =
