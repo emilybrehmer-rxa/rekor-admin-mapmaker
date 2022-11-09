@@ -90,41 +90,16 @@ const App = () => {
     ],
   };
 
-  
-  /* DEV: Validation */
-
-  return (
-    <Box sx={{ bgcolor: '#f8f8f8' }} ref={ref}>
-      <CssBaseline />
-      <Container maxWidth="md">
-        <Box p={3} sx={{ bgcolor: '#fff' }}>
-          {(() => {
-            if (errors !== '') {
-              return <Typography>{errors}</Typography>;
-            }
-              return (
-                <div>
-                  <AdminScreen
-                    loading={loading}
-                    setLoading={setLoading}
-                    curScreen={curScreen}
-                    setCurScreen={setCurScreen}
-                    mapConfig={mapConfig}
-                  />
-                </div>
-              );            
-            /* return (
-              <LoadScreen
-                loading={loading}
-                setLoading={setLoading}
-                curScreen={curScreen}
-                setCurScreen={setCurScreen}
-              />
-            ); */
-          })()}
-        </Box>
-      </Container>
-    </Box>
+  return (          
+        <div>
+          <AdminScreen
+            loading={loading}
+            setLoading={setLoading}
+            curScreen={curScreen}
+            setCurScreen={setCurScreen}
+            mapConfig={mapConfig}
+          />
+        </div>
   );
 };
 

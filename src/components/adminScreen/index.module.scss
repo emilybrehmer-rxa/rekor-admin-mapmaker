@@ -1,1 +1,9 @@
 @import 'src/styles/variables.scss';
+
+.logo {
+    max-width: 160px;
+}
+
+.MuiAppBar-colorPrimary{
+    background-color: #f8f8f8;
+}
