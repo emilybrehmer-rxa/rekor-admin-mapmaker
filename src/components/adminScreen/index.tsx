@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { AppBar } from '@material-ui/core';
+import IconButton from '@material-ui/core';
 
 import mapboxgl from 'mapbox-gl';
 
@@ -18,16 +19,20 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import 'mapbox-gl/dist/mapbox-gl.js';
 import './index.module.scss';
 import wkx from 'wkx';
-import { Toolbar } from '@mui/material';
+import { Icon, Toolbar } from '@mui/material';
 // import { ClassNames } from '@emotion/react';
 import { makeStyles } from '@mui/styles';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { Logo } from '../../../public/rekor-avatar.jpg';
+import themeOptions from 'components/app';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZG9tby1kZXYiLCJhIjoiY2w1c2Rib3F1MmdnZTNqdGVicjczc3BtOSJ9.-0Iju7M9-F-hwUSByI4_Vw';
 
+// let theme = themeOptions();
 // const theme = createTheme();
 const useStyles = makeStyles({
+  
 // makeStyles((theme) => ({
 //   root: (props) => ({
 //     // backgroundcolor: props.backgroundcolor,
@@ -35,6 +40,11 @@ const useStyles = makeStyles({
 //   }),
   logo: {
     maxWidth: 80,
+  },
+  titleHeading: {
+    color: '#161a33',
+    paddingLeft: 16,
+    fontSize: 24!,
   },
 });
 
@@ -53,30 +63,52 @@ export const AdminScreen = (props: any) => {
 
 
   return (
-    <Box ref={ref}>
-      <AppBar variant='outlined'>
-        <Toolbar>
-          <img src="./rekor-avatar.jpg" alt="logo" className={classes.logo}/>
+    <Paper ref={ref} >
+      <AppBar 
+        variant='outlined' 
+        color='transparent' 
+        position="static"
+        style={{padding: 0}}>
+        <Toolbar style={{paddingLeft: 0}}>
+          <Box
+            component="img"
+            sx={{
+              height: 64,
+            }}
+            alt="logo"
+            src="./rekor-avatar.jpg"
+          />
+          <Typography className={classes.titleHeading} style={{fontSize: 24}}>Rekor Map Builder</Typography>         
+            
+            <Icon 
+              color="primary"
+              sx={{
+                float: 'right',
+                paddingRight: 16
+              }}
+              >close</Icon>  
+          {/* <img src="./rekor-avatar.jpg" alt="logo" className={classes.logo}/> */}
         </Toolbar>
-
       </AppBar>
-      <Typography variant="h4" gutterBottom>
-      Street Surveillance Map
-      </Typography>
-      <Typography pb={2} variant="body2">
-        Descriptive text, either hard-coded or configurable via the admin.
-      </Typography>
+      <Box>
+        <Typography variant="h4" gutterBottom>
+        Street Surveillance Map
+        </Typography>
+        <Typography pb={2} variant="body2">
+          Descriptive text, either hard-coded or configurable via the admin.
+        </Typography>
 
-      <Backdrop
-        sx={{
-          color: '#000',
-          background: '#666',
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-        }}
-        open={false}
-      >
-        <CircularProgress color="inherit" />
+        <Backdrop
+          sx={{
+            color: '#000',
+            background: '#666',
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+          }}
+          open={false}
+        >
+          <CircularProgress color="inherit" />
       </Backdrop>
-    </Box>
+      </Box>      
+    </Paper>
   );
 };

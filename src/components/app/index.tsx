@@ -12,6 +12,29 @@ import Container from '@mui/material/Container';
 
 import './index.module.scss';
 import wkx from 'wkx';
+import { createTheme } from '@mui/material/styles';
+
+export const themeOptions = createTheme ({
+  palette: {
+    primary: {
+      main: '#161a33',
+    },
+    secondary: {
+      main: '#fc9927',
+    },
+    info: {
+      main: '#3abeef',
+      light: '#e9f3f6',
+    },
+    success: {
+      main: '#4caf50',
+      light: '#ddf0eb',
+    },
+  },
+  typography: {
+    fontFamily: "Option Sans Light"    
+  }
+});
 
 const App = () => {
   const ref = useRef(null);
