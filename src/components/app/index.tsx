@@ -12,29 +12,6 @@ import Container from '@mui/material/Container';
 
 import './index.module.scss';
 import wkx from 'wkx';
-import { createTheme } from '@mui/material/styles';
-
-export const themeOptions = createTheme ({
-  palette: {
-    primary: {
-      main: '#161a33',
-    },
-    secondary: {
-      main: '#fc9927',
-    },
-    info: {
-      main: '#3abeef',
-      light: '#e9f3f6',
-    },
-    success: {
-      main: '#4caf50',
-      light: '#ddf0eb',
-    },
-  },
-  typography: {
-    fontFamily: "Option Sans Light"    
-  }
-});
 
 const App = () => {
   const ref = useRef(null);
@@ -43,6 +20,7 @@ const App = () => {
   const [curScreen, setCurScreen] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userRole, setUserRole] = useState('User');
+
 
   const getUserInfo = () => {
     let domoUserInfo: any = {};
@@ -114,7 +92,7 @@ const App = () => {
   };
 
   return (          
-        <div>
+        <div>         
           <AdminScreen
             loading={loading}
             setLoading={setLoading}
