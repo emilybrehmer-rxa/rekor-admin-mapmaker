@@ -92,7 +92,7 @@ const App = () => {
   };
 
   return (          
-        <div>         
+        <div >         
           <AdminScreen
             loading={loading}
             setLoading={setLoading}

@@ -23,7 +23,10 @@ const Header: FC<any> = ({  }): ReactElement => {
               alt="logo"
               src="./rekor-avatar.jpg"
             />
-            <Typography className='title-header'>
+            <Typography className='title-header'
+              fontSize= "24px"
+              paddingLeft= "16px"
+              color= "#161a33">
                 {ADMIN_TITLE}
             </Typography>     
             <Box sx={{ marginLeft: 'auto', paddingRight: '16px'}}>

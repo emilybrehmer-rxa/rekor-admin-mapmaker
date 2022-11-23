@@ -1,14 +1,20 @@
-import React, { FC, ReactNode, useReducer } from "react";
+import { FC, ReactNode, useReducer } from "react";
+import * as React from 'react';
 import clsx from "clsx";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
+import { makeStyles, createStyles, Theme, styled } from "@material-ui/core/styles";
+import { CssBaseline, Typography } from "@material-ui/core";
 import { createTheme } from '@mui/material/styles';
+import { Grid } from '@material-ui/core/';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 
 /// components
 import Header from "./header/header";
+import Layers from "./layers/layers";
 
 /// constants
 import { DRAWER_WIDTH } from "utils/constants";
+
 
 /// define css- in - js
 const useStyles = makeStyles((theme: Theme) =>
@@ -40,6 +46,14 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.type === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
 const themeOptions = createTheme ({
     palette: {
     primary: {
@@ -62,6 +76,16 @@ const themeOptions = createTheme ({
     }
 });
 
+const gridStyles = {
+    backgroundColor: "blue",
+    paddingBottom: 2,
+    paddingRight: 2,
+    marginTop: 2,
+    marginLeft: "auto",
+    marginRight: "auto",
+    maxWidth: 500
+  };
+
 /// define intergace to represent component props
 interface Props {
     toggleTheme: () => void;
@@ -78,6 +102,61 @@ const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children}) =>
             <>
             <CssBaseline />
             <Header/>
+            <Box  sx={{flexGrow: 1, display: 'flex', margin: '16px'}}>
+                <Grid container zeroMinWidth spacing={4} >
+                    <Grid
+                        direction='column'
+                        justifyContent="flex-start"
+                        alignItems="flex-start"
+                        item xs={2}
+                        // sx={gridStyles}
+                        >
+                            <Box        
+                            position='relative'                     
+                            sx={{
+                                margin: "16px",
+                                height: 300,
+                                width: '100%',
+                                p: 2,
+                                borderRadius: 2,
+                                border: '1px grey',
+                                m: 2
+                            }}>
+                                <Typography>Layers</Typography>
+                                <Layers></Layers>
+                            </Box>
+                    </Grid>
+                        
+                    <Grid
+                        container
+                        direction='column'
+                        justifyContent="flex-start"
+                        alignItems="flex-start"
+                        item xs={1}>
+                            <Item>Filters</Item>
+                    </Grid>
+                        
+                    <Grid
+                        container
+                        direction='column'
+                        justifyContent="flex-start"
+                        alignItems="flex-start"
+                        item xs={8}>
+                            <Item>Streets</Item>
+                    </Grid>
+                
+                    <Grid
+                        container
+                        direction='column'
+                        justifyContent="flex-start"
+                        alignItems="flex-start"
+                        item xs={1}>
+                            <Item>Types</Item>
+                    </Grid>
+                </Grid>                
+            </Box>
+           
+            
             {/* <main
                 className={clsx(classes.content, {
                     [classes.contentShift]: open,
