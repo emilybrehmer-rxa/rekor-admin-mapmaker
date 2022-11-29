@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             background: theme.palette.background.paper,
             margin: 0,
-            height: '90vh',
+            height: '95vh',
         },
         innerContent: {
             border: "1px",
@@ -51,14 +51,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     })
 );
-
-// const Item = styled(Paper)(({ theme }) => ({
-//     backgroundColor: theme.palette.type === 'dark' ? '#1A2027' : '#fff',
-//     ...theme.typography.body2,
-//     padding: theme.spacing(1),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-//   }));
 
 const themeOptions = createTheme ({
     palette: {
