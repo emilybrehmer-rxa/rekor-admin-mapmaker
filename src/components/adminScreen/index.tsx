@@ -32,12 +32,12 @@ export const AdminScreen = (props: any) => {
   const [useDefaultTheme] = useState(true);
 
   return (
-    <Paper ref={ref} >
+    <Paper ref={ref}>
        <Layout 
             toggleTheme={toggleTheme}
             useDefaultTheme={useDefaultTheme}
         />
-      <Box>
+      {/* <Box>
         <Typography variant="h4" gutterBottom>
         Street Surveillance Map
         </Typography>
@@ -55,7 +55,7 @@ export const AdminScreen = (props: any) => {
         >
           <CircularProgress color="inherit" />
       </Backdrop>
-      </Box>      
+      </Box>       */}
     </Paper>
   );
 };
