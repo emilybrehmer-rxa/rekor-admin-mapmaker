@@ -10,7 +10,7 @@ interface Props {
     dataSet: () => void;    
 }
 
-const AccordionDetals: FC<Props> = ({  }): ReactElement => {
+const AccordionDataset: FC<Props> = ({  }): ReactElement => {
     return (
         <Box>
             
@@ -18,4 +18,4 @@ const AccordionDetals: FC<Props> = ({  }): ReactElement => {
     )
 }
 
-export default AccordionDetails;
+export default AccordionDataset;

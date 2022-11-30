@@ -8,6 +8,9 @@ const Layers: FC<any> = ({  }): ReactElement => {
     return (
         <Box>
             <AccordionMenu dropDownSelector="Incidents"/>
+            <AccordionMenu dropDownSelector="Congestion"/>
+            <AccordionMenu dropDownSelector="Traffic Lights"/>
+            <AccordionMenu dropDownSelector="Other Example"/>
         </Box>
     )
 }

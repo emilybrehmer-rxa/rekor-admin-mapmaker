@@ -1,19 +1,15 @@
-import { FC, ReactNode, useReducer } from "react";
+import { FC, useReducer } from "react";
 import * as React from 'react';
-import clsx from "clsx";
-import { makeStyles, createStyles, Theme, styled } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { CssBaseline, Typography } from "@material-ui/core";
 import { createTheme } from '@mui/material/styles';
 import { Grid } from '@material-ui/core/';
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 
 /// components
 import Header from "./header/header";
 import Layers from "./layers/layers";
 
-/// constants
-import { DRAWER_WIDTH } from "utils/constants";
 
 
 /// define css- in - js
@@ -38,16 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         regionHeader: {
             color: '#808080',
-            paddingBottom: "6px"
-        },
-        toolbar: {
-            ...theme.mixins.toolbar,
-        },
-        contentShift: {
-            transition: theme.transitions.create("margin", {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            })
+            paddingBottom: "6px",
+            fontSize: '0.9rem'
         },
     })
 );
@@ -74,16 +62,6 @@ const themeOptions = createTheme ({
     }
 });
 
-const gridStyles = {
-    backgroundColor: "blue",
-    paddingBottom: 2,
-    paddingRight: 2,
-    marginTop: "16px",
-    marginLeft: "16px",
-    marginRight: "auto",
-    maxWidth: 500
-  };
-
 /// define intergace to represent component props
 interface Props {
     toggleTheme: () => void;
@@ -101,14 +79,8 @@ const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children}) =>
             <CssBaseline />
             <Header/>
             <Box  sx={{flexGrow: 1, display: 'flex', margin: '16px'}}>
-                <Grid container zeroMinWidth spacing={4} className={classes.content}>
-                    <Grid
-                        direction='column'
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
-                        item xs={2}
-                        className = {classes.innerContent}
-                        >
+                <Grid container spacing={4} className={classes.content}>
+                    <Grid item xs={2} className = {classes.innerContent}>
                             <Box        
                             position='relative'                     
                             sx={{
@@ -125,47 +97,19 @@ const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children}) =>
                             </Box>
                     </Grid>
                         
-                    <Grid
-                        container
-                        direction='column'
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
-                        item xs={2}
-                        className = {classes.innerContent}>
+                    <Grid item xs={2} className = {classes.innerContent}>
                             <Typography className={classes.regionHeader}>Filters</Typography>
                     </Grid>
                         
-                    <Grid
-                        container
-                        direction='column'
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
-                        item xs={6}
-                        className = {classes.innerContent}>
+                    <Grid item xs={6} className = {classes.innerContent}>
                             <Typography className={classes.regionHeader}>Streets</Typography>
                     </Grid>
                 
-                    <Grid
-                        container
-                        direction='column'
-                        justifyContent="flex-start"
-                        alignItems="flex-start"
-                        item xs={2}
-                        className = {classes.innerContent}>
+                    <Grid item xs={2} className = {classes.innerContent}>
                             <Typography className={classes.regionHeader}>Types</Typography>
                     </Grid>
                 </Grid>                
             </Box>
-           
-            
-            {/* <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.toolbar}/>
-                {children}
-            </main> */}
             </>
         </div>
     )

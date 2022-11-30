@@ -1,28 +1,28 @@
-import React, { ReactElement, FC } from "react";
-import { makeStyles, createStyles, Theme, styled } from "@material-ui/core/styles";
+import React, { ReactElement, FC, useState } from "react";
+import { styled } from "@material-ui/core/styles";
 import Box from '@mui/material/Box';
 import MuiAccordion,  { AccordionProps } from '@mui/material/Accordion';
 import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
+import MuiAccordionDetails, { AccordionDetailsProps } from '@mui/material/AccordionDetails';
+import MuiTypography, { TypographyProps } from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
+const darkGrey = '#808080'
 
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
   ))(({ theme }) => ({
-    border: `1px solid ${theme.palette.divider}`,
+    margin: '6px',
+    border: `1.5px solid ${theme.palette.divider}`,
     '&:not(:last-child)': {
-      borderBottom: 0,
+      borderBottom: '3px',
     },
     '&:before': {
       display: 'none',
     },
   }));
-interface Props {
-    dropDownSelector: string;
-    
-}
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
     <MuiAccordionSummary
@@ -30,6 +30,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
       {...props}
     />
   ))(({ theme }) => ({
+    paddingBottom: "3px",
     backgroundColor:
       theme.palette.type === 'dark'
         ? 'rgba(255, 255, 255, .05)'
@@ -43,18 +44,46 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     },
   }));
 
+  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+    padding: theme.spacing(2),
+    borderTop: '1px solid rgba(0, 0, 0, .125)',
+  }));
+
+  const Typography = styled((props: TypographyProps) => (
+    <MuiTypography {...props} />
+  ))(({ theme }) => ({
+    '& .MuiTypography-body1': {
+      fontFamily: "Option Sans Light",
+      color: theme.palette.common.black,
+      fontSize: '10px'
+    }
+  }));
+
+  interface Props {
+    dropDownSelector: string;
+    }
+
 const AccordionMenu: FC<Props> = ({ dropDownSelector }): ReactElement => {
-    // const classes = useStyles();
-    return (
+  const [isShown, setIsShown] = useState(false);  
+  return (
         <Box>
             <Accordion >
-                <AccordionSummary
+                <AccordionSummary                    
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    onMouseEnter={ () => setIsShown(true)}
+                    onMouseLeave={() => setIsShown(false)}
                     >
-                        <Typography>{dropDownSelector}</Typography>
+                      {isShown && (
+                        <DragIndicatorIcon sx={{ color: darkGrey }}/>
+                      )}                      
+                      <VisibilityIcon sx={{ color: darkGrey, marginRight: "6px" }}/>
+                      <Typography>{dropDownSelector}</Typography>                        
                 </AccordionSummary>
+                <AccordionDetails>
+                    <Typography>Dataset Details - To come </Typography>  
+                </AccordionDetails>
             </Accordion>
         </Box>
     )

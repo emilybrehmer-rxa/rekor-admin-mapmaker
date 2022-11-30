@@ -37,25 +37,6 @@ export const AdminScreen = (props: any) => {
             toggleTheme={toggleTheme}
             useDefaultTheme={useDefaultTheme}
         />
-      {/* <Box>
-        <Typography variant="h4" gutterBottom>
-        Street Surveillance Map
-        </Typography>
-        <Typography pb={2} variant="body2">
-          Descriptive text, either hard-coded or configurable via the admin.
-        </Typography>
-
-        <Backdrop
-          sx={{
-            color: '#000',
-            background: '#666',
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-          }}
-          open={false}
-        >
-          <CircularProgress color="inherit" />
-      </Backdrop>
-      </Box>       */}
     </Paper>
   );
 };
