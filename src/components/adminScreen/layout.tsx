@@ -1,6 +1,6 @@
 import { FC, useReducer } from "react";
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline, Typography } from "@material-ui/core";
 import { createTheme } from '@mui/material/styles';
 import { Grid } from '@material-ui/core/';
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             background: theme.palette.background.paper,
             margin: 0,
-            height: '95vh',
+            height: '95vh', // This is the only way I could get the grid to expand the full length of the screen, for now.
         },
         innerContent: {
             border: "1px",
@@ -56,9 +56,6 @@ const themeOptions = createTheme ({
             main: '#4caf50',
             light: '#ddf0eb',
         },
-        },
-        typography: {
-        fontFamily: "Option Sans Light"    
     }
 });
 
@@ -76,40 +73,32 @@ const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children}) =>
     return (
         <div className={classes.gridroot}>
             <>
-            <CssBaseline />
-            <Header/>
-            <Box  sx={{flexGrow: 1, display: 'flex', margin: '16px'}}>
-                <Grid container spacing={4} className={classes.content}>
-                    <Grid item xs={2} className = {classes.innerContent}>
-                            <Box        
-                            position='relative'                     
-                            sx={{
-                                margin: "16px",
-                                height: 300,
-                                width: '100%',
-                                p: 2,
-                                borderRadius: 2,
-                                border: '1px grey',
-                                m: 2
-                            }}>
-                                <Typography className={classes.regionHeader}>Layers</Typography>
-                                <Layers></Layers>
-                            </Box>
-                    </Grid>
-                        
-                    <Grid item xs={2} className = {classes.innerContent}>
-                            <Typography className={classes.regionHeader}>Filters</Typography>
-                    </Grid>
-                        
-                    <Grid item xs={6} className = {classes.innerContent}>
-                            <Typography className={classes.regionHeader}>Streets</Typography>
-                    </Grid>
-                
-                    <Grid item xs={2} className = {classes.innerContent}>
-                            <Typography className={classes.regionHeader}>Types</Typography>
-                    </Grid>
-                </Grid>                
-            </Box>
+            <ThemeProvider theme={themeOptions}>
+                <CssBaseline />
+                <Header/>
+                <Box >
+                    <Grid container spacing={4} className={classes.content}>
+                        <Grid item xs={2} className = {classes.innerContent}>
+                                <Box>
+                                    <Typography className={classes.regionHeader}>Layers</Typography>
+                                    <Layers></Layers>
+                                </Box>
+                        </Grid>
+                            
+                        <Grid item xs={2} className = {classes.innerContent}>
+                                <Typography className={classes.regionHeader}>Filters</Typography>
+                        </Grid>
+                            
+                        <Grid item xs={6} className = {classes.innerContent}>
+                                <Typography className={classes.regionHeader}>Streets</Typography>
+                        </Grid>
+                    
+                        <Grid item xs={2} className = {classes.innerContent}>
+                                <Typography className={classes.regionHeader}>Types</Typography>
+                        </Grid>
+                    </Grid>                
+                </Box>
+            </ThemeProvider>
             </>
         </div>
     )
